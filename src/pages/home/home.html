@@ -1,14 +1,49 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-navbar transparent>
+    <ion-title center>Your Reviews</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addReview()"><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <div *ngIf="loading" padding center class="loading">
+    <ion-spinner icon="spiral" color="light"></ion-spinner>
+    <small block white>Searching for reviews, this may take a while.</small>
+  </div>
+
+  <ion-list no-lines *ngIf="!noReviews">
+ 
+    <ion-item-sliding *ngFor="let review of reviews">
+ 
+      <ion-item>
+ 
+        <ion-avatar item-left>
+          <img src="https://api.adorable.io/avatars/75/{{review.title}}">
+        </ion-avatar>
+ 
+        <h2>{{review.title}}</h2>
+        <p>{{review.description}}</p>
+ 
+        <ion-icon *ngIf="review.rating < 50" color="danger" name="sad"></ion-icon>
+        <ion-icon *ngIf="review.rating >= 50" color="secondary" name="happy"></ion-icon> 
+        {{review.rating}}
+ 
+      </ion-item>
+ 
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteReview(review)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+ 
+  </ion-list>
+
+  <div *ngIf="noReviews">
+    <p white padding>No review at the moment !</p>
+  </div>
+ 
 </ion-content>

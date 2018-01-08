@@ -1,3 +1,42 @@
-page-home {
+.ios, .md {
+ 
+  home-page {
+    ion-item-sliding {
+      width: inherit;
+    }
 
+    ion-item {
+      background-color: #fff;
+      border-bottom: none !important;
+    }
+ 
+    ion-item-sliding {
+      margin: 10px;
+    }
+    
+    .loading {
+      margin: 100px;
+    }
+  }
+  
+  ion-navbar * {
+    color: #fff;
+  }
+ 
+  ion-label {
+    white-space: normal;
+    margin-left: 5px !important;
+  }
+}
+
+[white] {
+  color: #fff;
+}
+
+[center] {
+  text-align: center;
+}
+
+[block] {
+  display: block
 }
